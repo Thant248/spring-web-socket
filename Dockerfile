@@ -1,18 +1,3 @@
-# our base build image
-FROM maven:3.2.5-jdk-17 as maven
-
-# copy the project files
-COPY ./pom.xml ./pom.xml
-
-# build all dependencies
-RUN mvn dependency:go-offline -B
-
-# copy your other files
-COPY ./src ./src
-
-# build for release
-RUN mvn package -DskipTests
-
 # our final base image
 FROM openjdk:17-jre-alpine
 
