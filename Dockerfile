@@ -1,10 +1,26 @@
+# our base build image
+FROM maven:3.2.5-jdk-17 as maven
 
-# Use a base image with Java 17
-FROM openjdk:17
-RUN mvn install
-COPY target/*.jar real_time_chat-0.0.1-SNAPSHOT.jar
-# Expose the application port
-EXPOSE 8090
+# copy the project files
+COPY ./pom.xml ./pom.xml
 
-# Run the App
-ENTRYPOINT ["java", "-jar", "/real_time_chat-0.0.1-SNAPSHOT.jar"]
+# build all dependencies
+RUN mvn dependency:go-offline -B
+
+# copy your other files
+COPY ./src ./src
+
+# build for release
+RUN mvn package -DskipTests
+
+# our final base image
+FROM openjdk:17-jre-alpine
+
+# set deployment directory
+WORKDIR /my-project
+
+# copy over the built artifact from the maven image
+COPY --from=maven target/*.jar app.jar
+
+# set the startup command to run your binary
+CMD ["java", "-jar", "/real_time_chat-0.0.1-SNAPSHOT.jar"]
