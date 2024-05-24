@@ -1,11 +1,5 @@
-# our final base image
-FROM openjdk:17-jre-alpine
+FROM eclipse-temurin:17-jdk-alphine
 
-# set deployment directory
-WORKDIR /my-project
-
-# copy over the built artifact from the maven image
-COPY --from=maven target/real_time_chat-0.0.1-SNAPSHOT.jar app.jar
-
-# set the startup command to run your binary
-CMD ["java", "-jar", "app.jar"]
+VOLUME /tmp
+COPY target/*.jar app.jar
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
