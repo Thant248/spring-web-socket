@@ -1,15 +1,11 @@
 # How to Deploy  on Render Using DockerContainer
 <ol>
-<li>```html
-    docker login</li>
-<li>```html
-     docker  build -t chatapp:v1.0.0 --build-arg VERSION=1.5 .</li>
-<li>```html
-      docker images</li>
-<li>```html 
-    docker tag chatapp:v1.0.0 YOURDOCKEHUBNAME/chatapp:latest
-    </li>
+  <li><code>docker login</code></li>
+  <li><code>docker build -t chatapp:v1.0.0 --build-arg VERSION=1.5 .</code></li>
+  <li><code>docker images</code></li>
+  <li><code>docker tag chatapp:v1.0.0 YOURDOCKERHUBNAME/chatapp:latest</code></li>
 </ol>
+
 
 
 
