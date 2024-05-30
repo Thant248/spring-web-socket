@@ -7,7 +7,7 @@
   <li><code>docker push YOURDOCKERHUBNAME/chatapp:latest</code></li>
 </ol>
 
-<p><img src="/spring-web-socket/image/p" alt="foo" title="title" /></p>
+<p><img src="[/spring-web-socket/image/p](https://github.com/Thant248/spring-web-socket/tree/main/image)" alt="foo" title="title" /></p>
 
 
 
